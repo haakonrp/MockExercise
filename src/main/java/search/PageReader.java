@@ -3,6 +3,6 @@ package search;
 /**
  * @author nilstes
  */
-public interface PageReader {
+public interface PageReader { //MessageService
     String[] readPage(String url);
 }

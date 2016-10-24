@@ -10,14 +10,15 @@ import java.util.Map;
 /**
  * @author nilstes
  */
-public class SearchEngine {
-    PageReader reader;
+public class SearchEngine implements Consumer { //MyDIApplication
+    private PageReader reader;
     Map<String, Map<String,Integer>> scores = new HashMap<String, Map<String,Integer>>();
-    
-    public SearchEngine() {
-        this.reader = new UrlPageReader();
+
+    public SearchEngine(PageReader pr) {
+        this.reader = pr;
     }
-    
+
+    @Override
     public void indexPage(String url) {
         String[] words = reader.readPage(url);
         for(String word : words) {
@@ -34,7 +35,8 @@ public class SearchEngine {
             }
         }
     }
-    
+
+    @Override
     public List<String> search(String word) {
         final Map<String,Integer> scoresForWord = scores.get(word);
         List<String> sites = new ArrayList<String>(scoresForWord.keySet());

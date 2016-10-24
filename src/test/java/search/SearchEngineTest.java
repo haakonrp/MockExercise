@@ -12,9 +12,18 @@ public class SearchEngineTest {
     
     public SearchEngineTest() {
     }
-    
-    @Before
-    public void setUp() {
+
+    public static void main(String[] args) {
+        String url = "www.google.com";
+        String keyword = "search";
+        PageReaderInjector injector = null;
+        Consumer app = null;
+
+        //test
+        injector = new UrlPageReaderInjector();
+        app = injector.getConsumer();
+        app.search(keyword);
+        app.indexPage(url);
     }
     
 }
